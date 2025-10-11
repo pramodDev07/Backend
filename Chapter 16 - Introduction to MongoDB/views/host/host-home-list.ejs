@@ -1,0 +1,257 @@
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-50">
+
+  <!-- Header -->
+   <%- include('../partials/nav') %>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+
+    <!-- Page Header -->
+    <div class="mb-8 flex justify-between items-center">
+      <div>
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">My Properties</h1>
+      <p class="text-gray-600">Manage your listings and track performance</p>
+      </div>
+       <a href="/host/add-home"
+              class="bg-red-600 text-white py-2 px-6 rounded-lg font-medium transition-all duration-300 inline-block">
+              <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Add Property</span>
+              </div>
+            </a>
+    </div>
+
+    <!-- Stats Dashboard -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-blue-100 p-3 rounded-lg">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mb-1">Total Properties</p>
+        <p class="text-3xl font-bold text-gray-900">6</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-green-100 p-3 rounded-lg">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mb-1">Active Listings</p>
+        <p class="text-3xl font-bold text-gray-900">5</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-purple-100 p-3 rounded-lg">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mb-1">Total Views</p>
+        <p class="text-3xl font-bold text-gray-900">8.4K</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-yellow-100 p-3 rounded-lg">
+            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mb-1">Monthly Revenue</p>
+        <p class="text-3xl font-bold text-gray-900">₹2.4L</p>
+      </div>
+    </div>
+
+    <!-- Filter & Sort Bar -->
+    <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-4">
+          <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition">
+            All (6)
+          </button>
+          <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition">
+            Active (5)
+          </button>
+          <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition">
+            Inactive (1)
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <label class="text-gray-600 text-sm">Sort by:</label>
+          <select
+            class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none">
+            <option>Recently Added</option>
+            <option>Most Popular</option>
+            <option>Highest Rated</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Properties List -->
+    <div class="space-y-6">
+
+      <!-- Property Card 1 - Active -->
+       <% registeredHomes.forEach(home=> { %>
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="md:flex">
+          <!-- Image Section -->
+          <div class="md:w-1/3 relative">
+            <img src="<%= home.image %>" alt="Property"
+              class="w-full h-64 md:h-full object-cover">
+            <div class="absolute top-4 left-4">
+              <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                Active
+              </span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition">
+                <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Content Section -->
+          <div class="md:w-2/3 p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2"><%= home.houseName %></h3>
+                <div class="flex items-center text-gray-600 mb-3">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span><%= home.location %></span>
+                </div>
+              </div>
+              <div class="flex items-center bg-yellow-50 px-3 py-2 rounded-lg">
+                <svg class="w-5 h-5 text-yellow-400 fill-current mr-1" viewBox="0 0 20 20">
+                  <path
+                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                <span class="font-bold text-gray-900"><%= home.rating %></span>
+                <span class="text-gray-600 text-sm ml-1">(124)</span>
+              </div>
+            </div>
+
+            <!-- Property Info -->
+            <div class="grid grid-cols-4 gap-4 mb-4 pb-4 border-b border-gray-200">
+              <div>
+                <p class="text-sm text-gray-500">Bedrooms</p>
+                <p class="font-semibold text-gray-900">4</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Bathrooms</p>
+                <p class="font-semibold text-gray-900">3</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Max Guests</p>
+                <p class="font-semibold text-gray-900">8</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Price/Night</p>
+                <p class="font-semibold text-gray-900">₹<%= home.price %></p>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center p-3 bg-blue-50 rounded-lg">
+                <p class="text-2xl font-bold text-blue-600">1,247</p>
+                <p class="text-xs text-gray-600">Views</p>
+              </div>
+              <div class="text-center p-3 bg-green-50 rounded-lg">
+                <p class="text-2xl font-bold text-green-600">34</p>
+                <p class="text-xs text-gray-600">Bookings</p>
+              </div>
+              <div class="text-center p-3 bg-purple-50 rounded-lg">
+                <p class="text-2xl font-bold text-purple-600">₹2.9L</p>
+                <p class="text-xs text-gray-600">Earned</p>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-wrap gap-2">
+              <a href="/home-page" class="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                View Details
+              </a>
+              <a href="/host/edit-home/<%= home._id %>?editing=true"
+                class="px-4 py-2 border-2 border-gray-800 text-gray-800 rounded-lg font-medium hover:bg-gray-800 hover:text-white transition-colors">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Edit
+              </a>
+              <button
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Calendar
+              </button>
+              <button
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Analytics
+              </button>
+              <form action="/host/delete-home/<%= home._id %>" method="POST">
+              <button type="submit"
+                class="px-4 py-2 border border-red-300 text-red-600 rounded-lg font-medium hover:bg-red-50 transition-colors">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Delete
+              </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </main>
+</body>
+
+</html>

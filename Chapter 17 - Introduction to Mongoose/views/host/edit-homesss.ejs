@@ -1,0 +1,443 @@
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-50">
+
+  <!-- Header -->
+   <%- include('../partials/nav') %>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+
+    <!-- Page Header -->
+    <div class="mb-8">
+      <a href="/host/properties"
+        class="inline-flex items-center text-gray-600 hover:text-gray-900 mb-4 transition-colors">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to My Properties
+      </a>
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Edit Property</h1>
+      <p class="text-gray-600">Update your property details and settings</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Left Column - Form -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- Basic Information -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Basic Information</h2>
+          <form action="/host/edit-home" method="POST" class="space-y-5">
+              <div class="hidden">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Id Name *</label>
+              <input type="hidden" name="id" value="<%= home._id %>" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="Enter property name">
+            </div>
+
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Property Name *</label>
+              <input type="text" value="<%= home.houseName %>" // value
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="Enter property name">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Property Type *</label>
+              <select
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+                <option>Select property type</option>
+                <option selected>Villa</option>
+                <option>Apartment</option>
+                <option>House</option>
+                <option>Cottage</option>
+                <option>Bungalow</option>
+                <option>Penthouse</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms *</label>
+                <input type="number" value="4" min="1"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Bathrooms *</label>
+                <input type="number" value="3" min="1"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Max Guests *</label>
+                <input type="number" value="8" min="1"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Square Feet</label>
+              <input type="number" value="2500"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="Total area in sq ft">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
+              <textarea rows="5"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition resize-none"
+                placeholder="Describe your property...">Experience luxury living in this stunning modern villa located in the heart of Mumbai. This beautifully designed property features spacious rooms, contemporary furnishings, and breathtaking views.</textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Location -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Location</h2>
+          <form class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Address *</label>
+              <input type="text" value="<%= home.location %>"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="Street address">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">City *</label>
+                <input type="text" value="Mumbai"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">State *</label>
+                <input type="text" value="Maharashtra"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">PIN Code *</label>
+                <input type="text" value="400001"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Country *</label>
+                <select
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+                  <option selected>India</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pricing -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Pricing</h2>
+          <form class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Price per Night *</label>
+              <div class="relative">
+                <span class="absolute left-4 top-3.5 text-gray-500 font-semibold">₹</span>
+                <input type="number" value="<%= home.price %>"
+                  class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Cleaning Fee</label>
+                <div class="relative">
+                  <span class="absolute left-4 top-3.5 text-gray-500 font-semibold">₹</span>
+                  <input type="number" value="2000"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Security Deposit</label>
+                <div class="relative">
+                  <span class="absolute left-4 top-3.5 text-gray-500 font-semibold">₹</span>
+                  <input type="number" value="5000"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Minimum Stay (nights)</label>
+              <input type="number" value="2" min="1"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+            </div>
+          </form>
+        </div>
+
+        <!-- Amenities -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Amenities</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">WiFi</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Air Conditioning</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Swimming Pool</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Free Parking</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Kitchen</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Washer</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Dryer</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">TV</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Gym</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Hot Tub</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">Pet Friendly</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+              <span class="text-gray-700">EV Charging</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Images -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Property Images</h2>
+
+          <!-- Existing Images -->
+          <div class="mb-6">
+            <p class="text-sm text-gray-600 mb-4">Current Images (Drag to reorder)</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Property"
+                  class="w-full h-32 object-cover rounded-lg">
+                <div class="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">Main</div>
+                <button
+                  class="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688" alt="Property"
+                  class="w-full h-32 object-cover rounded-lg">
+                <button
+                  class="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Property"
+                  class="w-full h-32 object-cover rounded-lg">
+                <button
+                  class="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Property"
+                  class="w-full h-32 object-cover rounded-lg">
+                <button
+                  class="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upload New Images -->
+          <div
+            class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-red-500 transition cursor-pointer">
+            <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            <p class="text-gray-600 mb-2">Click to upload or drag and drop</p>
+            <p class="text-sm text-gray-500">PNG, JPG up to 10MB</p>
+            <input type="file" multiple accept="image/*" class="hidden">
+          </div>
+        </div>
+
+        <!-- House Rules -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">House Rules</h2>
+          <form class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Check-in Time</label>
+                <input type="time" value="14:00"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Check-out Time</label>
+                <input type="time" value="11:00"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition">
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                <span class="text-gray-700">Smoking allowed</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                <span class="text-gray-700">Parties or events allowed</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="checkbox" checked class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                <span class="text-gray-700">Children allowed</span>
+              </label>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Rules</label>
+              <textarea rows="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition resize-none"
+                placeholder="Any additional house rules...">Please remove shoes before entering. Quiet hours from 10 PM to 8 AM.</textarea>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Right Column - Preview & Actions -->
+      <div class="lg:col-span-1">
+
+        <!-- Property Status Card -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6 sticky top-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Property Status</h3>
+
+          <div class="space-y-4 mb-6">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Listing Status</span>
+              <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">Active</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Total Views</span>
+              <span class="font-semibold text-gray-900">1,247</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Total Bookings</span>
+              <span class="font-semibold text-gray-900">34</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Average Rating</span>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path
+                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                <span class="ml-1 font-semibold text-gray-900">4.8</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toggle Availability -->
+          <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-semibold text-gray-900">Available for Booking</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="sr-only peer">
+                <div
+                  class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600">
+                </div>
+              </label>
+            </div>
+            <p class="text-xs text-gray-500">Toggle to make property visible/invisible to guests</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-3">
+            <button type="submit" form="form"
+              class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg">
+              Save Changes
+            </button>
+            <button
+              class="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+              Preview Listing
+            </button>
+            <button
+              class="w-full border-2 border-red-300 text-red-600 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
+              Delete Property
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Tips Card -->
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+          <div class="flex items-start space-x-3">
+            <div class="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-2">Quick Tips</h3>
+              <ul class="text-sm text-gray-700 space-y-2">
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Add high-quality photos
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+
+
+                  //own added ++++++++++++++++++++++++++++++++++++++==================
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
