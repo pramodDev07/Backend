@@ -1,0 +1,112 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-50">
+  
+  <!-- Header -->
+ <%- include('../partials/nav') %>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">My Favorites</h1>
+      <p class="text-gray-600">Your saved homes and dream destinations</p>
+    </div>
+
+    <!-- Filter/Sort Bar -->
+    <div class="bg-white rounded-lg shadow-sm p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-700 font-medium">12 saved properties</span>
+        <div class="h-6 w-px bg-gray-300"></div>
+        <button class="text-red-600 hover:text-red-700 font-medium transition">
+          Clear All
+        </button>
+      </div>
+      
+      <div class="flex items-center space-x-3">
+        <label class="text-gray-600 text-sm">Sort by:</label>
+        <select class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none">
+          <option>Recently Added</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Rating</option>
+          <option>Location</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Favorites Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Favorite Card 1 -->
+        <% favoriteHomes.forEach(home=> { %>
+      <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
+        <div class="relative h-48 overflow-hidden bg-gray-200">
+          <img src="<%= home.image %>" alt="Luxury Villa" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+          <form action="/favorites/delete/<%= home._id %>" method="POST">
+          <button type="submit" class="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition z-10">
+            <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          </form>
+          <div class="absolute top-3 left-3 bg-white px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+            <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+            </svg>
+            <span class="text-sm font-semibold text-gray-800"><%= home.rating %></span>
+          </div>
+        </div>
+        
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-gray-900 mb-2 truncate"><%= home.houseName %></h3>
+          
+          <div class="flex items-center text-gray-600 mb-3">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span class="text-sm"><%= home.location %></span>
+          </div>
+          
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Saved 2 days ago</span>
+          </div>
+          
+          <div class="flex items-baseline justify-between mt-4">
+            <div>
+              <span class="text-2xl font-bold text-gray-900">₹<%= home.price %></span>
+              <span class="text-sm text-gray-500">/night</span>
+            </div>
+            <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+
+    <!-- Empty State (Hidden when there are favorites) -->
+    <!-- Uncomment this and hide the grid above when favorites list is empty -->
+    <!--
+    <div class="text-center py-16">
+      <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-6">
+        <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">No favorites yet</h2>
+      <p class="text-gray-600 mb-6">Start exploring and save your favorite homes</p>
+      <a href="/" class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+        Explore Homes
+      </a>
+    </div>
+    -->
+    </body>
+</html>
