@@ -6,7 +6,6 @@ const hostController = require('../controllers/hostController')
 
 hostRouter.get("/add-home", hostController.getAddHome)
   .post("/add-home", hostController.postAddHome)
-  // .get("/edit-home", hostController.getEditHome)
   .get("/host-home-list", hostController.getHostHomeList)
   .get("/edit-home/:homeId", hostController.getEditHome)
   .post("/edit-home", hostController.postEditHome)

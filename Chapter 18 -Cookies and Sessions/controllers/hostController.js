@@ -5,6 +5,7 @@ exports.getAddHome = (req, res, next) => {
     pageTitle: 'Add Home to airbnb',
     currentPage: 'host-home-list',
     editing: false,
+    isLoggedIn: req.session.isLoggedIn,
   });
 };
 
@@ -13,7 +14,8 @@ exports.getHostHomeList = (req, res, next) => {
     res.render('host/host-home-list', {
       registeredHomes: registeredHomes,
       pageTitle: 'My Properties - StayFinder Host',
-      currentPage: 'host-home-list'
+      currentPage: 'host-home-list',
+      isLoggedIn: req.session.isLoggedIn,
     }));
 };
 
@@ -33,6 +35,7 @@ exports.getEditHome = (req, res, next) => {
       pageTitle: 'Edit Property - StayFinder',
       currentPage: 'host-home-list',
       editing: editing,
+      isLoggedIn: req.session.isLoggedIn,
     });
   })
 };
