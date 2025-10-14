@@ -83,3 +83,21 @@ exports.getBookings = (req, res, next) => {
     user: req.session.user,
   }));
 };
+
+// HOME RULES
+exports.getHomeRules = [(req, res, next) => {
+  if(!req.session.isLoggedIn) {
+    return res.redirect('/login');
+  }
+  next();
+}, 
+
+(req, res, next) => {
+const homeId = req.params.homeId;
+// we can make  it house specific after have homeId in file name like this: `House Rules-${homeId}.pdf`
+const rulesFileName = `House Rules.pdf`;
+const filePath = path.join(rootDir, 'rules', rulesFileName);
+// res.sendFile(filePath)
+res.download(filePath, 'Rules.pdf');
+}
+]

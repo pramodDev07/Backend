@@ -44,10 +44,22 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.postAddHome = (req, res, next) => {
-  const { houseName, price, location, rating, image, description } = req.body;
-  const home = new Home({ houseName, price, location, rating, image, description });
+  const { houseName, price, location, rating, description } = req.body;
+  console.log(houseName, price, location, rating, description);
+  console.log("Uploaded File:", req.file);
+
+  if(!req.file) {
+   return res.status(422).send("No Image Provided");
+  }
+  const image = req.file.mimetype.startsWith('image/') ? req.file.path : null;
+  // const image = req.file.path;
+  // const pdfPath = req.file.path;
+
+ const pdfPath = req.file.mimetype === 'application/pdf' ? req.file.path : null;
+
+  const home = new Home({ houseName, price, location, rating, image, pdfPath, description });
   home.save().then((result) => {
-    console.log('Home Saved successfully', result);
+    console.log('Home Saved successfully');
   })
 
   res.redirect("/host/host-home-list")
@@ -60,8 +72,12 @@ exports.postEditHome = (req, res, next) => {
     home.price = price;
     home.location = location;
     home.rating = rating;
-    home.image = image;
     home.description = description;
+
+    if(req.file) {
+      home.image = req.file.path;
+    }
+
     home.save().then(result => {
       console.log('UPDATED HOME!', result);
     }).catch(err => {

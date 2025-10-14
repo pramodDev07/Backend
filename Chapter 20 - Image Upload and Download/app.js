@@ -3,6 +3,8 @@ const path = require('path');
 
 // External Module
 const express = require('express');
+const { default: mongoose } = require('mongoose');
+const multer = require('multer');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
@@ -14,7 +16,6 @@ const hostRouter = require('./routes/hostRouter');
 const authRouter = require('./routes/authRouter');
 const rootDir = require('./utils/pathUtil');
 const errorsController = require('./controllers/errors');
-const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -26,23 +27,48 @@ const store = new MongoDBStore({
   collection: 'sessions'
 });
 
-app.use(express.static(path.join(rootDir, 'public')))
+const randomSting = (length) => {
+  const characters = 'abcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  for(let i=0; i<length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, randomSting(10) + '-' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    cb(null, true);
+  }else{
+    cb(null, false);
+  }
+};
+
+const multerOptions = {
+  storage, fileFilter
+}
+
 app.use(express.urlencoded());
+app.use(multer(multerOptions).single('image'));
+app.use(express.static(path.join(rootDir, 'public')));
+app.use('/uploads', express.static(path.join(rootDir, 'uploads')));
+app.use('/host/uploads', express.static(path.join(rootDir, 'uploads')));
+app.use('/home-page/uploads', express.static(path.join(rootDir, 'uploads')));
 app.use(session({
   secret: "promoted Ai with complete coding",
   resave: false,
   saveUninitialized: true,
   store
 }));
-
-
-// app.use((req, res, next) => {
-//   req.session.isLoggedIn = req.session.isLoggedIn;
-//   // console.log("Cookies: ", req.get('Cookie'));
-//   // req.session.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
-//   next();
-// });
-
 
 app.use(authRouter);
 app.use(storeRouter);
@@ -54,7 +80,6 @@ app.use("/host", (req, res, next) => {
   }
 });
 app.use("/host", hostRouter);
-// app.use(hostRouter);
 app.use(errorsController.error404);
 
 const PORT = 3000;

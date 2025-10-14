@@ -7,6 +7,7 @@ const homeSchema = Schema({
   location: { type: String, required: true },
   rating: { type: String, required: true },
   image: String,
+  pdfPath: String,
   description: String,
 });
 
