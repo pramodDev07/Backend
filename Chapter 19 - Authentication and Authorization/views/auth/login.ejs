@@ -1,0 +1,73 @@
+<%- include('../partials/head') %>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+
+  <body class="bg-gray-50">
+    <%- include('../partials/nav') %>
+    <main class="container mx-auto px-4 h-screen flex items-center justify-center">
+      <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6 border border-gray-100">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-bold text-gray-900">
+            Welcome Back
+          </h1>
+          <p class="text-gray-500">Please enter your details to sign in</p>
+        </div>
+
+        <form action="/login" method="POST" class="space-y-5">
+          <!-- Display Validation Errors -->
+          <%- include('../partials/errors') %>
+
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-envelope text-gray-400"></i>
+              </div>
+              <input 
+                type="email" 
+                id="email"
+                name="email" 
+                value="<%= oldInput.email ? oldInput.email : '' %>" 
+                placeholder="Enter your email"
+                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
+                required 
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-lock text-gray-400"></i>
+              </div>
+              <input 
+                type="password" 
+                id="password"
+                name="password" 
+                placeholder="Enter your password"
+                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
+                required 
+              />
+            </div>
+          </div>
+
+          <button 
+            type="submit"
+            class="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transform hover:scale-[1.02] transition-all duration-200 font-medium"
+          >
+            Sign in
+          </button>
+
+          <div class="text-center text-sm text-gray-500">
+            Don't have an account? 
+            <a href="/signup" class="font-medium text-red-500 hover:text-red-600 transition duration-200">
+              Sign up
+            </a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
