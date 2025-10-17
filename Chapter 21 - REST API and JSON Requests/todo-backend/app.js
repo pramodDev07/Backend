@@ -1,20 +1,23 @@
 // Core Module
-const path = require('path');
 
 // External Module
 const express = require('express');
 const { default: mongoose } = require('mongoose');
+const cors = require('cors');
 
 const MONGO_URL = "mongodb+srv://pramodkumar011010_db_user:BWBHhjqhC8us8VGm@airbnb.pr3ts3z.mongodb.net/todo?retryWrites=true&w=majority&appName=airbnb";
 
 //Local Module 
-const rootDir = require('./utils/pathUtil');
 const errorsController = require('./controllers/errors');
+const todoItemsRouter = require('./routes/todoItemsRouter');
 
 const app = express();
 
 app.use(express.urlencoded());
-app.use(express.static(path.join(rootDir, 'public')));
+app.use(express.json());
+app.use(cors());
+
+app.use('/api/todo', todoItemsRouter)
 
 app.use(errorsController.error404);
 
