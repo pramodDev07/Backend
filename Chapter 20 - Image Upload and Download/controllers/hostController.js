@@ -1,4 +1,5 @@
 const Home = require("../models/home");
+const fs = require('fs');
 
 exports.getAddHome = (req, res, next) => {
   res.render('host/edit-home', {
@@ -51,13 +52,13 @@ exports.postAddHome = (req, res, next) => {
   if(!req.file) {
    return res.status(422).send("No Image Provided");
   }
-  const image = req.file.mimetype.startsWith('image/') ? req.file.path : null;
-  // const image = req.file.path;
+  // const image = req.file.mimetype.startsWith('image/') ? req.file.path : null;
+  const image = req.file.path;
   // const pdfPath = req.file.path;
 
- const pdfPath = req.file.mimetype === 'application/pdf' ? req.file.path : null;
+//  const pdfPath = req.file.mimetype === 'application/pdf' ? req.file.path : null;
 
-  const home = new Home({ houseName, price, location, rating, image, pdfPath, description });
+  const home = new Home({ houseName, price, location, rating, image, description });
   home.save().then((result) => {
     console.log('Home Saved successfully');
   })
@@ -75,6 +76,11 @@ exports.postEditHome = (req, res, next) => {
     home.description = description;
 
     if(req.file) {
+      fs.unlink(home.image, (err) => {
+        if(err) {
+          console.log("Error while deleting the old image: ", err);
+        }
+      });
       home.image = req.file.path;
     }
 
