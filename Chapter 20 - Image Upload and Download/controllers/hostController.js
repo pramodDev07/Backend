@@ -82,7 +82,7 @@ exports.postEditHome = (req, res, next) => {
         }
       });
       home.image = req.file.path;
-    }
+    };
 
     home.save().then(result => {
       console.log('UPDATED HOME!', result);
